@@ -4,19 +4,20 @@ import PageDefault from "../../../components/PageDefault";
 import FormField from "../../../components/FormField";
 import Button from "../../../components/Button";
 import useForm from "../../../hooks/useForm";
+import "../Cadastro.css";
 
 function CadastroCategoria() {
   const valoresIniciais = {
     titulo: "",
     descricao: "",
-    cor: "#ffffff"
+    cor: "#FFBA05"
   };
   const { handleChange, valores, clearForm } = useForm(valoresIniciais);
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
     if (window.location.href.includes("localhost")) {
-      const URL = "https://kianeflix.herokuapp.com/categorias";
+      const URL = "http://localhost:8080/categorias";
       fetch(URL)
         .then(async (respostaDoServer) => {
           if (respostaDoServer.ok) {
@@ -31,10 +32,8 @@ function CadastroCategoria() {
 
   return (
     <PageDefault>
-      <h1>
-        Cadastro de Categoria:
-        {" "}
-        {valores.titulo}
+      <h1 className="Titulo">
+        Nova categoria
       </h1>
       <form
         onSubmit={function handleSubmit(info) {
@@ -65,7 +64,7 @@ function CadastroCategoria() {
           onChange={handleChange}
         />
         <Button>
-          Cadastrar
+          Salvar
         </Button>
       </form>
       <ul>
