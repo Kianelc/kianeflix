@@ -22,4 +22,17 @@ const Button = styled.button`
   }
 `;
 
+export const ButtonSave = styled(Button)`
+  background: var(--secondary);
+  border-color: var(--secondary);
+  width: 180px;
+`;
+
+export const ButtonEmpty = styled(ButtonSave)`
+  background: var(--blackLighter);
+  border-color: var(--blackLighter);
+  color: var(--black);
+  margin-left: 40px;
+`;
+
 export default Button;
