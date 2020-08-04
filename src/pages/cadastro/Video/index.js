@@ -6,13 +6,14 @@ import FormField from "../../../components/FormField";
 import Button from "../../../components/Button";
 import videoRepository from "../../../repositories/videos";
 import categoriasRepository from "../../../repositories/categorias";
+import "../Cadastro.css";
 
 function CadastroVideo() {
   const history = useHistory();
   const valoresIniciais = {
-    titulo: "Video padrão",
-    url: "https://www.youtube.com/watch?v=jOAU81jdi-c",
-    categoria: "Front End"
+    titulo: "",
+    url: "",
+    categoria: ""
   };
   const [categorias, setCategorias] = useState([]);
   const categoriaTitulo = categorias.map(({ titulo }) => titulo);
@@ -24,9 +25,10 @@ function CadastroVideo() {
   }, []);
   return (
     <PageDefault>
-      <h1>Cadastro de Vídeo</h1>
+      <h1 className="Titulo">Novo vídeo</h1>
       <form onSubmit={(event) => {
         event.preventDefault();
+        // eslint-disable-next-line arrow-body-style
         const categoriaEscolhida = categorias.find((categoria) => {
           return categoria.titulo === valores.categoria;
         });
