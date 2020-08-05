@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import PageDefault from "../../../components/PageDefault";
 import FormField from "../../../components/FormField";
-import Button from "../../../components/Button";
+import Button, { ButtonSave, ButtonEmpty } from "../../../components/Button";
 import useForm from "../../../hooks/useForm";
 import "../Cadastro.css";
 
 function CadastroCategoria() {
+  const history = useHistory();
   const valoresIniciais = {
     titulo: "",
     descricao: "",
@@ -29,19 +30,26 @@ function CadastroCategoria() {
         });
     }
   }, []);
+  function handleSubmit(info) {
+    info.preventDefault();
+    setCategorias([...categorias, valores]);
+    clearForm();
+  }
+
+  function handleReset(event) {
+    event.preventDefault();
+    clearForm();
+  }
 
   return (
     <PageDefault>
-      <h1 className="Titulo">
-        Nova categoria
-      </h1>
-      <form
-        onSubmit={function handleSubmit(info) {
-          info.preventDefault();
-          setCategorias([...categorias, valores]);
-          clearForm();
-        }}
-      >
+      <div className="Cadastro">
+        <h1 className="Titulo">Nova categoria</h1>
+        <Button className="seta-esquerda" onClick={() => history.go(-1)}>
+          Voltar
+        </Button>
+      </div>
+      <form>
         <FormField
           label="Nome da Categoria:"
           name="titulo"
@@ -63,14 +71,16 @@ function CadastroCategoria() {
           value={valores.cor}
           onChange={handleChange}
         />
-        <Button>
+        <ButtonSave onClick={handleSubmit}>
           Salvar
-        </Button>
+        </ButtonSave>
+        <ButtonEmpty onClick={handleReset}>
+          Limpar
+        </ButtonEmpty>
       </form>
-      <ul>
+      <ul className="space">
         {categorias.map((categoria) => <li key={`${categoria.titulo}`}>{categoria.titulo}</li>)}
       </ul>
-      <Link to="/">Ir para home</Link>
     </PageDefault>
   );
 }
