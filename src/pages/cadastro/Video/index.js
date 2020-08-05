@@ -48,7 +48,7 @@ function CadastroVideo() {
           Voltar
         </Button>
       </div>
-      <form>
+      <form className="space">
         <FormField
           label="Título do Vídeo:"
           name="titulo"
