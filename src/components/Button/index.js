@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Button = styled.button`
   color: var(--white);
   background: var(--black);
-  border: none;
+  border: 1px solid var(--white);
   box-sizing: border-box;
   cursor: pointer;
   padding: 16px 24px;
@@ -22,13 +22,19 @@ const Button = styled.button`
   }
 `;
 
+export const ButtonGoBack = styled(Button)`
+  border: none;
+`;
+
 export const ButtonSave = styled(Button)`
   background: var(--secondary);
+  border: none;
   width: 180px;
 `;
 
 export const ButtonEmpty = styled(ButtonSave)`
   background: var(--blackLighter);
+  border: none;
   color: var(--black);
   margin-left: 40px;
 `;
