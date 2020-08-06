@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import PageDefault from "../../../components/PageDefault";
 import FormField from "../../../components/FormField";
+import Table from "../../../components/Table";
 import Button, { ButtonSave, ButtonEmpty } from "../../../components/Button";
 import useForm from "../../../hooks/useForm";
+import categoriasRepository from "../../../repositories/categorias";
 import "../Cadastro.css";
 
 function CadastroCategoria() {
@@ -17,21 +19,12 @@ function CadastroCategoria() {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    if (window.location.href.includes("localhost")) {
-      const URL = "http://localhost:8080/categorias";
-      fetch(URL)
-        .then(async (respostaDoServer) => {
-          if (respostaDoServer.ok) {
-            const resposta = await respostaDoServer.json();
-            setCategorias(resposta);
-            return;
-          }
-          throw new Error("Não foi possível pegar os dados");
-        });
-    }
+    categoriasRepository.getAll().then((categoriasDoServidor) => {
+      setCategorias(categoriasDoServidor);
+    });
   }, []);
-  function handleSubmit(info) {
-    info.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault();
     setCategorias([...categorias, valores]);
     clearForm();
   }
@@ -78,9 +71,7 @@ function CadastroCategoria() {
           Limpar
         </ButtonEmpty>
       </form>
-      <ul className="space">
-        {categorias.map((categoria) => <li key={`${categoria.titulo}`}>{categoria.titulo}</li>)}
-      </ul>
+      <Table categorias={categorias} className="space" />
     </PageDefault>
   );
 }
