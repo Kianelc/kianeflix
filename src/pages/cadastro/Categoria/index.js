@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import PageDefault from "../../../components/PageDefault";
 import FormField from "../../../components/FormField";
 import Table from "../../../components/Table";
-import Button, { ButtonSave, ButtonEmpty } from "../../../components/Button";
+import { ButtonGoBack, ButtonSave, ButtonEmpty } from "../../../components/Button";
 import useForm from "../../../hooks/useForm";
 import categoriasRepository from "../../../repositories/categorias";
 import "../Cadastro.css";
@@ -38,9 +38,9 @@ function CadastroCategoria() {
     <PageDefault>
       <div className="Cadastro">
         <h1 className="Titulo">Nova categoria</h1>
-        <Button className="seta-esquerda" onClick={() => history.go(-1)}>
+        <ButtonGoBack className="seta-esquerda" onClick={() => history.go(-1)}>
           Voltar
-        </Button>
+        </ButtonGoBack>
       </div>
       <form>
         <FormField

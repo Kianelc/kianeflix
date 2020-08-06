@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import PageDefault from "../../../components/PageDefault";
 import useForm from "../../../hooks/useForm";
 import FormField from "../../../components/FormField";
-import Button, { ButtonSave, ButtonEmpty } from "../../../components/Button";
+import { ButtonGoBack, ButtonSave, ButtonEmpty } from "../../../components/Button";
 import videoRepository from "../../../repositories/videos";
 import categoriasRepository from "../../../repositories/categorias";
 import "../Cadastro.css";
@@ -44,9 +44,9 @@ function CadastroVideo() {
     <PageDefault>
       <div className="Cadastro">
         <h1 className="Titulo">Novo vídeo</h1>
-        <Button className="seta-esquerda" onClick={() => history.go(-1)}>
+        <ButtonGoBack className="seta-esquerda" onClick={() => history.go(-1)}>
           Voltar
-        </Button>
+        </ButtonGoBack>
       </div>
       <form className="space">
         <FormField
